@@ -941,8 +941,8 @@
             </div>
             <div class="border-t border-gray-700 pt-6 text-center">
                 <p data-template-id="footer-copy" class="canva-text text-sm"
-                    style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">&copy;
-                    2026 AutoFix Zambia. All rights reserved.</p>
+                    style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">
+                    &copy; <span id="showCurrentYear"></span> AutoFix Zambia. All rights reserved.</p>
                 <p data-template-id="footer-copy" class="canva-text text-xs mt-1"
                     style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 14px;">Designed
                     by <a href="https://www.gvstave.dev/" class="text-[#5221e6]">Gvstave</a></p>
@@ -950,64 +950,9 @@
         </div>
     </footer>
     <script src="/_sdk/editing_sdk.js"></script>
-    <script>
-        lucide.createIcons();
-
-        // Scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Mobile menu
-        document.getElementById('mobile-toggle').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
-        // FAQ accordion
-        document.querySelectorAll('.faq-toggle').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const answer = btn.nextElementSibling;
-                const icon = btn.querySelector('[data-lucide]');
-                answer.classList.toggle('open');
-                icon.style.transform = answer.classList.contains('open') ? 'rotate(180deg)' : '';
-            });
-        });
-
-        // Booking form
-        document.getElementById('booking-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            this.reset();
-            document.getElementById('booking-success').classList.remove('hidden');
-            setTimeout(() => document.getElementById('booking-success').classList.add('hidden'), 5000);
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', (e) => {
-                const target = document.querySelector(a.getAttribute('href'));
-                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); document.getElementById('mobile-menu').classList.add('hidden'); }
-            });
-        });
-    </script>
-    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'a102af57e65f8002',t:'MTc4MjIwOTIzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
-    <script>
-        let ticking = false;
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const isScrolled = window.scrollY > 0;
-
-                    navbar.classList.toggle('nav-scrolled', isScrolled);
-                    navbar.classList.toggle('nav-default', !isScrolled);
-
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-    </script>
+    <script src="script/app.js"></script>
+    <script src="script/cloudflare-challenge.js"></script>
+    <script src="script/navbar.js"></script>
+    <script src="script/date.js"></script>
 </body>
-
 </html>
